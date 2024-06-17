@@ -1,9 +1,10 @@
 FROM node
 
-COPY package.json package.json
-COPY package-lock.json package-lock.json
-COPY main.js main.js
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
 
-RUN npm install
+RUN cd app && npm install
 
-ENTRYPOINT [ "node", "main.js" ]
+COPY main.js /app/main.js
+
+ENTRYPOINT [ "node", "/app/main.js" ]
